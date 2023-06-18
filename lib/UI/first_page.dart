@@ -30,6 +30,20 @@ class FirstPage extends GetView<FirstPageController> {
                 width: controller.isMaxWidth.value ? width * 0.85 : width * 0.5,
                 color:
                     controller.colorIsBlue.value ? Colors.blue : Colors.green,
+                child: 
+                // controller.iconsShow.value
+                //     ? const Icon(Icons.access_alarm)
+                //     : null,
+                 controller.showIcon.value ? const Icon(Icons.person) : null,
+
+                // Icon(
+                //   controller.showIcon.value
+                //       ? Icons.person
+                //       : Icons.access_alarm_outlined,
+                //   size: 24,
+                //   color: Colors.white,
+                //   //  controller.showIcon.value ? Icon(Icons.person) : Icon(Icons.access_alarm_outlined);
+                // ),
               ),
             ),
             SizedBox(
@@ -53,7 +67,7 @@ class FirstPage extends GetView<FirstPageController> {
                 Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: MaterialButton(
-                    onPressed: () =>controller.changeWidth(),
+                    onPressed: () => controller.changeWidth(),
                     color: Colors.cyan,
                     child: const Text('Change width'),
                   ),
@@ -77,15 +91,21 @@ class FirstPage extends GetView<FirstPageController> {
                 Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.showIcons();
+                    },
                     color: Colors.purple,
-                    child: const Text('Show icon'),
+                    child: Obx(
+                      () => Text(controller.iconsShow.value
+                          ? 'Hide icon'
+                          : 'Show icon',),
+                    ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () => controller.iconsShow(),
                     color: Colors.grey,
                     child: const Text('Bounce'),
                   ),
